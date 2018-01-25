@@ -1,0 +1,12 @@
+mat-sidenav-container {
+  flex: 1;
+}
+
+mat-sidenav {
+  width: 300px;
+}
+
+mat-toolbar > img {
+  width: 45px;
+  margin: 0 10px 0 10px;
+}
