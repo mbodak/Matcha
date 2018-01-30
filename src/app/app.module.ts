@@ -3,18 +3,21 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
-import { AppRoutingModule } from './app-routing.module';
-
+import { ParallaxNetworkComponent } from './parallax-network/parallax-network.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { MaterialModule } from './material/material.module';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ParallaxNetworkComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     MaterialModule,
-    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

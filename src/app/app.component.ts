@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+// import { ParallaxNetworkComponent } from './parallax-network/parallax-network.component';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +11,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   routes = [
     {'name': 'Home', 'link': '.'},
-    {'name': 'Login', 'link': '.'}
+    {'name': 'Login', 'link': '.'},
+    {'name': 'Sign Up', 'link': 'registration'}
   ];
 }
+
