@@ -2,11 +2,6 @@ mat-sidenav-container {
   flex: 1;
 }
 
-mat-sidenav-content {
-  width: 1000px;
-  height: 1000px;
-}
-
 mat-sidenav {
   width: 300px;
 }
@@ -14,16 +9,13 @@ mat-sidenav {
 mat-toolbar {
   display: flex;
   justify-content: space-between;
+
 }
+
 
 mat-toolbar > img {
   width: 45px;
   margin: 0 10px 0 10px;
-}
-
-app-parallax-network {
-  width: 100%;
-  height: 100%;
 }
 
 mat-toolbar > div:first-child {
@@ -32,6 +24,18 @@ mat-toolbar > div:first-child {
   flex-direction: row;
   box-sizing: border-box;
 }
+
+header {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  z-index: 2;
+}
+
+header h1 {
+  letter-spacing: 4px;
+  font-size: 25px;
+
+}
+
 
 .fill {
   flex: 1 1 auto;

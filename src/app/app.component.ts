@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-// import { ParallaxNetworkComponent } from './parallax-network/parallax-network.component';
 
 
 @Component({
@@ -9,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  projectName = 'GALACTIKA';
   routes = [
     {'name': 'Home', 'link': '.'},
     {'name': 'Login', 'link': '.'},

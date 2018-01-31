@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
+  grid = [
+      {cols: 1},
+      {cols: 1, rows: 1, color: 'lightblue'}
+  ];
   constructor() { }
 
   ngOnInit() {
   }
-
 }

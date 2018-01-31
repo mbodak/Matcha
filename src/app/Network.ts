@@ -92,7 +92,7 @@ class Options {
     if (interactive) {
       this._interactive = interactive;
     } else {
-      this._interactive = true;
+      this._interactive = false;
     }
   }
   set velocity(velocity: number) {
@@ -121,7 +121,7 @@ class Options {
 
 export class Network {
 
-  canvasDiv: HTMLElement;
+  div: HTMLElement;
   size: Size;
   options: Options;
   ctx: CanvasRenderingContext2D;
@@ -132,22 +132,27 @@ export class Network {
   mousePoint: Point;
 
   constructor(div: HTMLElement, opt: object) {
-    this.canvasDiv = div;
+
+    this.div = div;
     this.size = {
-      width: this.canvasDiv.offsetWidth,
-      height: this.canvasDiv.offsetHeight
+      width: this.div.offsetWidth,
+      height: this.div.offsetHeight
     };
     this.options = new Options(opt);
 
     this.bgDiv = <HTMLDivElement>document.createElement('div');
-    this.canvasDiv.appendChild(this.bgDiv);
+    // Network.setStyles(this.div, {
+    //     'z-index': 10,
+    // });
+    this.div.appendChild(this.bgDiv);
     Network.setStyles(this.bgDiv, {
       'position': 'absolute',
       'top': 0,
       'left': 0,
       'bottom': 0,
       'right': 0,
-      'z-index': 0
+      'z-index': -1,
+      'overflow': 'hidden'
     });
     // Check if valid particleColor
     if (!(/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i).test(this.options.particleColor)) {
@@ -160,32 +165,44 @@ export class Network {
     this.ctx = this.canvas.getContext('2d');
     this.canvas.width = this.size.width;
     this.canvas.height = this.size.height;
-    Network.setStyles(this.canvasDiv, { 'position': 'relative' });
     Network.setStyles(this.canvas, {
-      'z-index': 1,
+      'z-index': -1,
       'position': 'relative'
     });
-    // Add resize listener to canvas
-    window.addEventListener('resize', function () {
-      if (this.canvasDiv.offsetWidth === this.size.width && this.canvasDiv.offsetHeight === this.size.height) {
-        return false;
-      }
-      this.canvas.width = this.size.width = this.canvasDiv.offsetWidth;
-      this.canvas.height = this.size.height = this.canvasDiv.offsetHeight;
-      clearTimeout(this.resetTimer);
-      this.resetTimer = setTimeout(function () {
-        this.generatePoints();
-        if (this.options.interactive) {
-          this.particles.push(this.mousePoint);
-        }
-        requestAnimationFrame(this.update.bind(this));
-
-      }.bind(this), 500);
-    }.bind(this));
-
-
     // Initialise particles
     this.generatePoints();
+      // window.addEventListener('resize', function () {
+      //     if (this.div.offsetWidth === this.size.width && this.div.offsetHeight === this.size.height) {
+      //         return false;
+      //     }
+      //     this.canvas.width = this.size.width = this.div.offsetWidth;
+      //     this.canvas.height = this.size.height = this.div.offsetHeight;
+      //     clearTimeout(this.resetTimer);
+      //     this.resetTimer = setTimeout(function () {
+      //         this.generatePoints();
+      //         if (this.options.interactive) {
+      //             this.particles.push(this.mousePoint);
+      //         }
+      //         requestAnimationFrame(this.update.bind(this));
+      //
+      //     }.bind(this), 500);
+      // }.bind(this));
+      setInterval(() => {
+          if (this.div.offsetWidth === this.size.width && this.div.offsetHeight === this.size.height) {
+              return false;
+          }
+          this.canvas.width = this.size.width = this.div.offsetWidth;
+          this.canvas.height = this.size.height = this.div.offsetHeight;
+          clearTimeout(this.resetTimer);
+          this.resetTimer = setTimeout(function () {
+              this.generatePoints();
+              if (this.options.interactive) {
+                  this.particles.push(this.mousePoint);
+              }
+              requestAnimationFrame(this.update.bind(this));
+
+          }.bind(this), 500);
+      }, 100);
 
     if (this.options.interactive) {
 
